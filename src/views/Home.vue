@@ -5,7 +5,7 @@
       <div class="logo">
         <a href="/">
           <img src="../assets/logo.png" class="logo__img"/>
-          <span class="logo__text">风车车的后台管理系统</span>
+          <span class="logo__text">富力通商砼数据统计系统</span>
         </a>
       </div>
       <div class="pull-right">

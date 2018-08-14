@@ -9,17 +9,14 @@ const dao = {};
 
 dao.findList = async function (sname, page, limit) {
   sname = utils.trimSqlchar(sname);
-  let where = `where name like '%${sname}%'`;
-  let sorts = 'order by name';
+  let where = `where address like '%${sname}%'`;
+  let sorts = 'order by address';
   return await base.findList(tableName, null, where, sorts, page, limit);
 };
 
 dao.findById = async function (id, hasCategory) {
   if (hasCategory) {
-    let sqlQuery = `select a.*,c.id as cid,c.name as cname from book a 
-    left join book_category b on a.id = b.id 
-    left join category c on b.cid = c.id 
-    where a.id = ${id}`;
+    let sqlQuery = `select * from shipment a where a.id = ${id}`;
     return await base.get(sqlQuery, null);
   } else {
     return await base.findById(tableName, id);
@@ -29,13 +26,21 @@ dao.findById = async function (id, hasCategory) {
 
 dao.add = async function (data) {
   let fields = {
-    name: data.name,
-    summary: data.summary,
-    translator: data.translator,
-    author: data.author,
-    publisher: data.publisher,
-    publish_at: data.publish_at,
-    isbn: data.isbn
+    address: data.address,
+    project: data.project,
+    label: data.label,
+    pouringType: data.pouringType,
+    infomation1: data.infomation1,
+    infomation2: data.infomation2,
+    codeNum: data.codeNum,
+    mixRatio: data.mixRatio,
+    infomation3: data.infomation3,
+    CarNum: data.CarNum,
+    infomation4: data.infomation4,
+    driver: data.driver,
+    dateTime: data.dateTime,
+    infomation5: data.infomation5,
+    manager: data.manager
   };
   return await base.insert(tableName, fields);
 };

@@ -42,18 +42,25 @@ controller.findById = async function (req, res) {
 
 controller.add = async function (req, res) {
   try {
-    if (!req.body.name || !req.body.isbn) {
+    if (!req.body.address || !req.body.project) {
       return res.json(ErrorCode.INVALID_PARA);
     }
-    let cid = req.body.cid;
     let params = {
-      name: req.body.name,
-      summary: req.body.summary,
-      translator: req.body.translator,
-      author: req.body.author,
-      publisher: req.body.publisher,
-      publish_at: req.body.publish_at,
-      isbn: req.body.isbn
+      address: req.body.address,
+      project: req.body.project,
+      label: req.body.label,
+      pouringType: req.body.pouringType,
+      infomation1: req.body.infomation1,
+      infomation2: req.body.infomation2,
+      codeNum: req.body.codeNum,
+      mixRatio: req.body.mixRatio,
+      infomation3: req.body.infomation3,
+      CarNum: req.body.CarNum,
+      infomation4: req.body.infomation4,
+      driver: req.body.driver,
+      dateTime: req.body.dateTime,
+      infomation5: req.body.infomation5,
+      manager: req.body.manager
     };
     let result = await dao.add(params);
     if (result && result.stmt && result.stmt.changes > 0) {
@@ -64,10 +71,6 @@ controller.add = async function (req, res) {
     }
   } catch (ex) {
     console.log(ex);
-    if (ex.code === 'SQLITE_CONSTRAINT' && ex.message.indexOf('category.name') > -1) {
-      res.json(ErrorCode.CUSTOM_ERROR('该类别名称已经存在'));
-      return;
-    }
     res.json(ErrorCode.SERVER_ERROR);
   }
 };
@@ -75,18 +78,25 @@ controller.add = async function (req, res) {
 controller.update = async function (req, res) {
   try {
     const id = req.params.id;
-    if (!id || !req.body.name || !req.body.isbn) {
+    if (!id || !req.body.address || !req.body.project) {
       return res.json(ErrorCode.INVALID_PARA);
     }
-    let cid = req.body.cid;
     let params = {
-      name: req.body.name,
-      summary: req.body.summary,
-      translator: req.body.translator,
-      author: req.body.author,
-      publisher: req.body.publisher,
-      publish_at: req.body.publish_at,
-      isbn: req.body.isbn
+      address: req.body.address,
+      project: req.body.project,
+      label: req.body.label,
+      pouringType: req.body.pouringType,
+      infomation1: req.body.infomation1,
+      infomation2: req.body.infomation2,
+      codeNum: req.body.codeNum,
+      mixRatio: req.body.mixRatio,
+      infomation3: req.body.infomation3,
+      CarNum: req.body.CarNum,
+      infomation4: req.body.infomation4,
+      driver: req.body.driver,
+      dateTime: req.body.dateTime,
+      infomation5: req.body.infomation5,
+      manager: req.body.manager
     };
     let result = await dao.update(id, params);
     if (result && result.stmt && result.stmt.changes > 0) {

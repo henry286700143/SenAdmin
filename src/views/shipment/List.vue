@@ -35,7 +35,7 @@
         <el-table-column prop="driver" label="司机" width="100"></el-table-column>
         <el-table-column label="操作" width="140">
           <template slot-scope="scope">
-            <router-link :to="{ path: '/book/edit/'+scope.row.id}" v-if="AuthBookEdit">
+            <router-link :to="{ path: '/shipment/edit/'+scope.row.id}" v-if="AuthShipmentEdit">
               <el-button type="warning" plain size="mini">编辑</el-button>
             </router-link>
             <el-button type="danger" plain size="mini" v-if="scope.row.role!==1" @click="handleDelete(scope.row.id)">
@@ -78,20 +78,20 @@
           return this.$store.state.book.sname
         },
         set (val) {
-          this.$store.commit('book/updateItem', {sname: val})
+          this.$store.commit('shipment/updateItem', {sname: val})
         }
       },
-      AuthBookAdd: function () {
-        return this.isPermission('AuthBookAdd')
+      AuthShipmentAdd: function () {
+        return this.isPermission('AuthShipmentAdd')
       },
-      AuthBookEdit: function () {
-        return this.isPermission('AuthBookEdit')
+      AuthShipmentEdit: function () {
+        return this.isPermission('AuthShipmentEdit')
       }
     },
     methods: {
-      ...mapActions('book', ['findList', 'delete']),
+      ...mapActions('shipment', ['findList', 'delete']),
       handleSearch (ev) {
-        this.$store.commit('book/resetSearchStatus')
+        this.$store.commit('shipment/resetSearchStatus')
         this.search()
         if (ev) {
           ev.preventDefault()
@@ -99,7 +99,7 @@
         }
       },
       handleCurrentChange (val) {
-        this.$store.commit('book/updateItem', {page: val})
+        this.$store.commit('shipment/updateItem', {page: val})
         this.search()
       },
       search: async function () {
@@ -118,7 +118,7 @@
       },
       handleDelete: async function (id) {
         try {
-          await this.$confirm('确定删除该书籍吗？', '系统提示', {type: 'warning'})
+          await this.$confirm('确定删除该条记录吗？', '系统提示', {type: 'warning'})
         } catch (cancel) {
           return // 取消就不继续处理
         }

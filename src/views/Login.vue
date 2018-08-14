@@ -3,7 +3,7 @@
     <el-header style="height: 50px;border-bottom: 1px solid #e7e7e7;">
       <div style="width:100%;padding-top: 10px;">
         <img src="../assets/logo.png" height="30px;" align="absmiddle"/>
-        <span style="padding-left: 10px;"><b> 枫叶管理系统</b></span>
+        <span style="padding-left: 10px;"><b> 富力通商砼数据统计系统</b></span>
       </div>
     </el-header>
 
@@ -21,9 +21,10 @@
         <el-button type="primary" style="width:100%;" @click.native.prevent="handleLogin" :loading="loading">
           <b>登 录</b>
         </el-button>
-        <div style="background: #efefef;padding:5px;border-radius: 5px;font-size: 12px;margin-top: 5px;">
+ <!--       <div style="background: #efefef;padding:5px;border-radius: 5px;font-size: 12px;margin-top: 5px;">
           <p style="margin: 0px;line-height: 20px;">超级管理员：admin/123456</p>
           <p style="margin: 0px;line-height: 20px;">普通管理员：demo/demo@demo</p>
+          -->
         </div>
       </el-form-item>
     </el-form>

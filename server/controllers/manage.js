@@ -45,7 +45,6 @@ controller.add = async function (req, res) {
     if (!req.body.name || !req.body.isbn) {
       return res.json(ErrorCode.INVALID_PARA);
     }
-    let cid = req.body.cid;
     let params = {
       name: req.body.name,
       summary: req.body.summary,
@@ -78,7 +77,6 @@ controller.update = async function (req, res) {
     if (!id || !req.body.name || !req.body.isbn) {
       return res.json(ErrorCode.INVALID_PARA);
     }
-    let cid = req.body.cid;
     let params = {
       name: req.body.name,
       summary: req.body.summary,

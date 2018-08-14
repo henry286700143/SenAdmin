@@ -3,12 +3,12 @@
     <!--导航区-->
     <div class="page-breadcrumb">
       <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/book/list' }">书籍管理</el-breadcrumb-item>
-        <el-breadcrumb-item>{{id ? '编辑书籍' : '新增书籍'}}</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/shipment/list' }">出料单管理</el-breadcrumb-item>
+        <el-breadcrumb-item>{{id ? '编辑出料单' : '新增出料单'}}</el-breadcrumb-item>
       </el-breadcrumb>
       <!--返回按钮-->
       <div class="button-back">
-        <router-link :to="{ path:'/book/list'}">
+        <router-link :to="{ path:'/shipment/list'}">
           <el-button type="default" size="mini">返回</el-button>
         </router-link>
       </div>
@@ -18,36 +18,50 @@
     <div class="page-main">
       <div class="content-wrap">
         <el-form class="form-book--info" ref="bookForm" :model="bookForm" :rules="bookRule" label-width="80px">
-          <el-form-item label="书名" prop="name">
-            <el-input v-model="bookForm.name"></el-input>
+          <el-form-item label="工程名称及浇筑部位" prop="address">
+            <el-input v-model="bookForm.address"></el-input>
           </el-form-item>
-          <el-form-item label="作者" prop="author">
-            <el-input v-model="bookForm.author"></el-input>
+          <el-form-item label="施工单位" prop="project">
+            <el-input v-model="bookForm.project"></el-input>
           </el-form-item>
-          <el-form-item label="译者" prop="translator">
-            <el-input v-model="bookForm.translator"></el-input>
+          <el-form-item label="标号" prop="label">
+            <el-input v-model="bookForm.label"></el-input>
           </el-form-item>
-          <el-form-item label="出版社" prop="publisher">
-            <el-input v-model="bookForm.publisher"></el-input>
+          <el-form-item label="浇筑方式" prop="pouringType">
+            <el-input v-model="bookForm.pouringType"></el-input>
           </el-form-item>
-          <el-form-item label="出版日期" prop="publish_at">
-            <el-input v-model="bookForm.publish_at"></el-input>
+          <el-form-item label="信息1" prop="infomation1">
+            <el-input v-model="bookForm.infomation1"></el-input>
           </el-form-item>
-          <el-form-item label="ISBN" prop="isbn">
-            <el-input v-model="bookForm.isbn"></el-input>
+          <el-form-item label="信息2" prop="infomation2">
+            <el-input v-model="bookForm.infomation2"></el-input>
           </el-form-item>
-          <el-form-item label="书籍类型">
-            <el-select v-model="bookForm.cid" placeholder="请选择数据类别">
-              <el-option
-                v-for="item in categories"
-                :key="item.name"
-                :label="item.name"
-                :value="item.id">
-              </el-option>
-            </el-select>
+          <el-form-item label="编码" prop="codeNum">
+            <el-input v-model="bookForm.codeNum"></el-input>
           </el-form-item>
-          <el-form-item label="简介" prop="summary">
-            <el-input type="textarea" v-model="bookForm.summary" :autosize="{ minRows: 3}"></el-input>
+          <el-form-item label="配合比" prop="mixRatio">
+            <el-input v-model="bookForm.mixRatio"></el-input>
+          </el-form-item>
+          <el-form-item label="信息3" prop="infomation3">
+            <el-input v-model="bookForm.infomation3"></el-input>
+          </el-form-item>
+          <el-form-item label="车号" prop="CarNum">
+            <el-input v-model="bookForm.CarNum"></el-input>
+          </el-form-item>
+          <el-form-item label="信息4" prop="infomation4">
+            <el-input v-model="bookForm.infomation4"></el-input>
+          </el-form-item>
+          <el-form-item label="司机" prop="driver">
+            <el-input v-model="bookForm.driver"></el-input>
+          </el-form-item>
+          <el-form-item label="时间" prop="dateTime">
+            <el-date-picker v-model="bookForm.dateTime" type="datetime" placeholder="选择日期时间"></el-date-picker>
+          </el-form-item>
+          <el-form-item label="信息5" prop="infomation5">
+            <el-input v-model="bookForm.infomation5"></el-input>
+          </el-form-item>
+          <el-form-item label="调度" prop="manager">
+            <el-input v-model="bookForm.manager"></el-input>
           </el-form-item>
           <el-form-item label="">
             <el-button type="main" @click="handleSubmit" :disabled="btnSubmitDisabled" class="btn-long">提交</el-button>
@@ -67,24 +81,67 @@
         btnSubmitDisabled: false,
         id: '',
         bookForm: {
-          name: '',
-          summary: '',
-          translator: '',
-          author: '',
-          publisher: '',
-          publish_at: '',
-          isbn: '',
-          cid: ''
+          address: '',
+          project: '',
+          label: '',
+          pouringType: '',
+          infomation1: '',
+          infomation2: '',
+          codeNum: '',
+          mixRatio: '',
+          infomation3: '',
+          CarNum: '',
+          infomation4: '',
+          driver: '',
+          dateTime: '',
+          infomation5: '',
+          manager: ''
         },
         bookRule: {
-          name: [
-            {required: true, message: '书名不能为空', trigger: 'blur'}
+          address: [
+            {required: true, message: '不能为空', trigger: 'blur'}
           ],
-          author: [
-            {required: true, message: '作者不能为空', trigger: 'blur'}
+          project: [
+            {required: true, message: '不能为空', trigger: 'blur'}
           ],
-          isbn: [
-            {required: true, message: 'ISBN不能为空', trigger: 'blur'}
+          label: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          pouringType: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          infomation1: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          infomation2: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          codeNum: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          mixRatio: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          infomation3: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          CarNum: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          infomation4: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          driver: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          dateTime: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          infomation5: [
+            {required: true, message: '不能为空', trigger: 'blur'}
+          ],
+          manager: [
+            {required: true, message: '不能为空', trigger: 'blur'}
           ]
         }
       }
@@ -96,12 +153,8 @@
       })
     },
     methods: {
-      ...mapActions('book',
+      ...mapActions('shipment',
         ['findById', 'findMoreById', 'add', 'update']
-      ),
-      ...mapActions('category', {
-          'fillCategories': 'findAll'
-        }
       ),
       checkValid: async function () {
         let valid = false
@@ -131,8 +184,8 @@
               this.$alert('操作成功！', '系统提示', {
                 confirmButtonText: '确定',
                 callback: action => {
-                  this.$store.commit('book/updateItem', {dataList: []})
-                  this.$router.push({path: '/book/list'})
+                  this.$store.commit('shipment/updateItem', {dataList: []})
+                  this.$router.push({path: '/shipment/list'})
                 }
               })
             } else {
@@ -153,7 +206,7 @@
                 this.id = ''
                 this.$refs['bookForm'].resetFields()
               }).catch(() => {
-                this.$router.push({path: '/book/list'})
+                this.$router.push({path: '/shipment/list'})
               })
             } else {
               this.$msgError(result.errmsg)
@@ -173,14 +226,21 @@
         try {
           let result = await this.findMoreById(id)
           if (result.errcode === 0 && result.data) {
-            this.bookForm.name = result.data.name
-            this.bookForm.summary = result.data.summary
-            this.bookForm.translator = result.data.translator
-            this.bookForm.author = result.data.author
-            this.bookForm.publisher = result.data.publisher
-            this.bookForm.publish_at = result.data.publish_at
-            this.bookForm.isbn = result.data.isbn
-            this.bookForm.cid = result.data.cid
+            this.bookForm.address = result.data.address
+            this.bookForm.project = result.data.project
+            this.bookForm.label = result.data.label
+            this.bookForm.pouringType = result.data.pouringType
+            this.bookForm.infomation1 = result.data.infomation1
+            this.bookForm.infomation2 = result.data.infomation2
+            this.bookForm.codeNum = result.data.codeNum
+            this.bookForm.mixRatio = result.data.mixRatio
+            this.bookForm.infomation3 = result.data.infomation3
+            this.bookForm.CarNum = result.data.CarNum
+            this.bookForm.infomation4 = result.data.infomation4
+            this.bookForm.driver = result.data.driver
+            this.bookForm.dateTime = result.data.dateTime
+            this.bookForm.infomation5 = result.data.infomation5
+            this.bookForm.manager = result.data.manager
           } else {
             this.btnSubmitDisabled = true
             this.$msgError('获取数据失败')
