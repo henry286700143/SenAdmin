@@ -25,6 +25,14 @@ const PictureList = resolve => require(['@/views/picture/List'], resolve)
 const PictureAdd = resolve => require(['@/views/picture/Add'], resolve)
 const PictureDetail = resolve => require(['@/views/picture/Detail'], resolve)
 
+const ShipmentList = resolve => require(['@/views/shipment/List'], resolve)
+const ShipmentAddOrEdit = resolve => require(['@/views/shipment/AddOrEdit'], resolve)
+const ShipmentCountList = resolve => require(['@/views/shipment/Count'], resolve)
+
+const ManageList = resolve => require(['@/views/manage/List'], resolve)
+const ManageAddOrEdit = resolve => require(['@/views/manage/AddOrEdit'], resolve)
+const ManageCountList = resolve => require(['@/views/manage/Count'], resolve)
+
 /**
  * 静态路由
  * 下面的路由属于默认的必须有的路由
@@ -126,6 +134,58 @@ export const asyncRouterMap = [
       {
         path: '/picture/detail/:id', component: PictureDetail, name: 'picturedetail',
         meta: {permission: 'AuthPictureView'}
+      }
+    ]
+  },
+  {
+    path: '/shipment',
+    component: Home,
+    redirect: {name: 'shipmentlist'},
+    menuShow: true,
+    menuName: '出料单管理',
+    iconCls: 'iconfont icon-books2',
+    children: [
+      {
+        path: '/shipment/list', component: ShipmentList, name: 'shipmentlist', menuShow: true, menuName: '出料单列表',
+        meta: {permission: 'AuthShipmentView'}
+      },
+      {
+        path: '/shipment/add', component: ShipmentAddOrEdit, name: 'shipmentadd',
+        meta: {permission: 'AuthShipmentAdd'}
+      },
+      {
+        path: '/shipment/edit/:id', component: ShipmentAddOrEdit, name: 'shipmentedit',
+        meta: {permission: 'AuthShipmentEdit'}
+      },
+      {
+        path: '/shipment/count', component: ShipmentCountList, name: 'shipmentcount', menuShow: true, menuName: '出料单统计',
+        meta: {permission: 'AuthShipmentCount'}
+      }
+    ]
+  },
+  {
+    path: '/manage',
+    component: Home,
+    redirect: {name: 'managelist'},
+    menuShow: true,
+    menuName: '调度单管理',
+    iconCls: 'iconfont icon-books2',
+    children: [
+      {
+        path: '/manage/list', component: ManageList, name: 'managelist', menuShow: true, menuName: '调度单列表',
+        meta: {permission: 'AuthManageView'}
+      },
+      {
+        path: '/manage/add', component: ManageAddOrEdit, name: 'manageadd',
+        meta: {permission: 'AuthManageAdd'}
+      },
+      {
+        path: '/manage/edit/:id', component: ManageAddOrEdit, name: 'manageedit',
+        meta: {permission: 'AuthManageEdit'}
+      },
+      {
+        path: '/manage/count', component: ManageCountList, name: 'managecount', menuShow: true, menuName: '调度单统计',
+        meta: {permission: 'AuthManageCount'}
       }
     ]
   },

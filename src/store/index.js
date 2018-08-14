@@ -8,6 +8,8 @@ import permission from './modules/permission'
 import book from './modules/book'
 import category from './modules/category'
 import picture from './modules/picture'
+import shipment from './modules/shipment'
+import manage from './modules/manage'
 import createLogger from 'vuex/dist/logger'
 import {asyncRouterMap, constantRouterMap} from '@/router/index.js'
 import TYPE from './mutation-types'
@@ -57,7 +59,9 @@ export default new Vuex.Store({
     permission,
     book,
     category,
-    picture
+    picture,
+    shipment,
+    manage
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []

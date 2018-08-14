@@ -6,15 +6,15 @@
       <el-form :inline="true" label-width="0px">
         <el-form-item label="" label-width="0px">
           <el-input v-model="sname"
-                    placeholder="请输入书名"
+                    placeholder="请输入工程名称"
                     :trigger-on-focus="false"
                     @keydown.enter.stop.native="handleSearch($event)">
             <el-button type="warn" slot="append" icon="el-icon-search" @click="handleSearch">搜索</el-button>
           </el-input>
         </el-form-item>
-        <el-form-item class="pull-right" v-if="AuthBookAdd">
-          <router-link :to="{ path: '/book/add' }">
-            <el-button type="default" icon="el-icon-plus">新增书籍</el-button>
+        <el-form-item class="pull-right" v-if="AuthShipmentAdd">
+          <router-link :to="{ path: '/shipment/add' }">
+            <el-button type="default" icon="el-icon-plus">新增出料单</el-button>
           </router-link>
         </el-form-item>
       </el-form>
@@ -29,10 +29,10 @@
             <p class="summary">[ 内容简介 ] {{ props.row.summary }}</p>
           </template>
         </el-table-column>
-        <el-table-column label="书名" prop="name" sortable></el-table-column>
-        <el-table-column label="作者" width="150" prop="author"></el-table-column>
-        <el-table-column label="出版社" width="150" prop="publisher"></el-table-column>
-        <el-table-column label="出版日期" width="150" prop="publish_at"></el-table-column>
+        <el-table-column prop="address" label="工程名称及浇筑部位" sortable></el-table-column>
+        <el-table-column prop="project" label="施工单位" width="150"></el-table-column>
+        <el-table-column prop="label" label="标号" width="100"></el-table-column>
+        <el-table-column prop="driver" label="司机" width="100"></el-table-column>
         <el-table-column label="操作" width="140">
           <template slot-scope="scope">
             <router-link :to="{ path: '/book/edit/'+scope.row.id}" v-if="AuthBookEdit">
