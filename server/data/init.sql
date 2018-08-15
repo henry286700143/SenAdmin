@@ -143,3 +143,41 @@ CREATE TABLE shipment (
     manager  TEXT,  -- 出版社
     updated_at TIMESTAMP
 )
+
+-- 调度单
+CREATE TABLE manage (
+    id         INTEGER   PRIMARY KEY
+                         NOT NULL
+                         UNIQUE,
+    contractId       TEXT,  -- 书名
+    jobId    TEXT,  -- 简介
+    supplyUnit TEXT,  -- 译者
+    produceTime     TEXT,  -- 作者
+    address  TEXT,  -- 出版社
+    requester TEXT,  -- 出版日期
+    powerLevel       TEXT      NOT NULL,  -- ISBN号
+    impLevel    TEXT,  -- 简介
+    pouringType TEXT,  -- 译者
+    others     TEXT,  -- 作者
+    supply  TEXT,  -- 出版社
+    planSlump TEXT,  -- 出版日期
+	realSlump     TEXT,
+	mixRatioNum     TEXT,
+	mixRatio     TEXT,
+	distance     TEXT,
+	CarNum     TEXT,
+	infomation1     TEXT,
+	driver     TEXT,
+    departureTime TIMESTAMP NOT NULL
+                         DEFAULT CURRENT_TIMESTAMP,
+	arriveTime TIMESTAMP NOT NULL
+                         DEFAULT CURRENT_TIMESTAMP,
+    arriveTemp     TEXT,  -- 
+	beginTime TIMESTAMP NOT NULL
+                         DEFAULT CURRENT_TIMESTAMP,
+	endTime TIMESTAMP NOT NULL
+                         DEFAULT CURRENT_TIMESTAMP,
+	infomation2     TEXT,
+    manager  TEXT,  -- 出版社
+    updated_at TIMESTAMP
+)

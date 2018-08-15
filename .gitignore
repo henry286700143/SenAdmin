@@ -1,7 +1,6 @@
 .DS_Store
 node_modules/
 dist/
-server/data/demo.db
 !server/upload/avatars/.gitkeep
 !server/upload/imgs/.gitkeep
 !server/upload/tmp/.gitkeep
