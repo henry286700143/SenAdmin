@@ -21,8 +21,8 @@
           <el-form-item label="工程名称及浇筑部位" prop="address">
             <el-input v-model="bookForm.address"></el-input>
           </el-form-item>
-          <el-form-item label="施工单位" prop="project">
-            <el-input v-model="bookForm.project"></el-input>
+          <el-form-item label="施工单位" prop="supplyUnit">
+            <el-input v-model="bookForm.supplyUnit"></el-input>
           </el-form-item>
           <el-form-item label="标号" prop="label">
             <el-input v-model="bookForm.label"></el-input>
@@ -30,26 +30,26 @@
           <el-form-item label="浇筑方式" prop="pouringType">
             <el-input v-model="bookForm.pouringType"></el-input>
           </el-form-item>
-          <el-form-item label="信息1" prop="infomation1">
-            <el-input v-model="bookForm.infomation1"></el-input>
+          <el-form-item label="本车供应方量" prop="supply">
+            <el-input v-model="bookForm.supply"></el-input>
           </el-form-item>
-          <el-form-item label="信息2" prop="infomation2">
-            <el-input v-model="bookForm.infomation2"></el-input>
+          <el-form-item label="要求塌落度" prop="planSlump">
+            <el-input v-model="bookForm.planSlump"></el-input>
           </el-form-item>
-          <el-form-item label="编码" prop="codeNum">
-            <el-input v-model="bookForm.codeNum"></el-input>
+          <el-form-item label="配合比编号" prop="mixRatioNum">
+            <el-input v-model="bookForm.mixRatioNum"></el-input>
           </el-form-item>
           <el-form-item label="配合比" prop="mixRatio">
             <el-input v-model="bookForm.mixRatio"></el-input>
           </el-form-item>
-          <el-form-item label="信息3" prop="infomation3">
-            <el-input v-model="bookForm.infomation3"></el-input>
+          <el-form-item label="运距" prop="distance">
+            <el-input v-model="bookForm.distance"></el-input>
           </el-form-item>
-          <el-form-item label="车号" prop="CarNum">
-            <el-input v-model="bookForm.CarNum"></el-input>
+          <el-form-item label="车号" prop="carNum">
+            <el-input v-model="bookForm.carNum"></el-input>
           </el-form-item>
-          <el-form-item label="信息4" prop="infomation4">
-            <el-input v-model="bookForm.infomation4"></el-input>
+          <el-form-item label="信息1" prop="infomation1">
+            <el-input v-model="bookForm.infomation1"></el-input>
           </el-form-item>
           <el-form-item label="司机" prop="driver">
             <el-input v-model="bookForm.driver"></el-input>
@@ -57,8 +57,8 @@
           <el-form-item label="时间" prop="dateTime">
             <el-date-picker v-model="bookForm.dateTime" type="datetime" placeholder="选择日期时间"></el-date-picker>
           </el-form-item>
-          <el-form-item label="信息5" prop="infomation5">
-            <el-input v-model="bookForm.infomation5"></el-input>
+          <el-form-item label="信息2" prop="infomation2">
+            <el-input v-model="bookForm.infomation2"></el-input>
           </el-form-item>
           <el-form-item label="调度" prop="manager">
             <el-input v-model="bookForm.manager"></el-input>
@@ -82,26 +82,26 @@
         id: '',
         bookForm: {
           address: '',
-          project: '',
+          supplyUnit: '',
           label: '',
           pouringType: '',
-          infomation1: '',
-          infomation2: '',
-          codeNum: '',
+          supply: '',
+          planSlump: '',
+          mixRatioNum: '',
           mixRatio: '',
-          infomation3: '',
-          CarNum: '',
-          infomation4: '',
+          distance: '',
+          carNum: '',
+          infomation1: '',
           driver: '',
           dateTime: '',
-          infomation5: '',
+          infomation2: '',
           manager: ''
         },
         bookRule: {
           address: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
-          project: [
+          supplyUnit: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
           label: [
@@ -110,25 +110,25 @@
           pouringType: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
-          infomation1: [
+          supply: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
-          infomation2: [
+          planSlump: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
-          codeNum: [
+          mixRatioNum: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
           mixRatio: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
-          infomation3: [
+          distance: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
-          CarNum: [
+          carNum: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
-          infomation4: [
+          infomation1: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
           driver: [
@@ -137,7 +137,7 @@
           dateTime: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
-          infomation5: [
+          infomation2: [
             {required: true, message: '不能为空', trigger: 'blur'}
           ],
           manager: [
@@ -227,19 +227,19 @@
           let result = await this.findMoreById(id)
           if (result.errcode === 0 && result.data) {
             this.bookForm.address = result.data.address
-            this.bookForm.project = result.data.project
+            this.bookForm.supplyUnit = result.data.supplyUnit
             this.bookForm.label = result.data.label
             this.bookForm.pouringType = result.data.pouringType
-            this.bookForm.infomation1 = result.data.infomation1
-            this.bookForm.infomation2 = result.data.infomation2
-            this.bookForm.codeNum = result.data.codeNum
+            this.bookForm.supply = result.data.supply
+            this.bookForm.planSlump = result.data.planSlump
+            this.bookForm.mixRatioNum = result.data.mixRatioNum
             this.bookForm.mixRatio = result.data.mixRatio
-            this.bookForm.infomation3 = result.data.infomation3
-            this.bookForm.CarNum = result.data.CarNum
-            this.bookForm.infomation4 = result.data.infomation4
+            this.bookForm.distance = result.data.distance
+            this.bookForm.carNum = result.data.carNum
+            this.bookForm.infomation1 = result.data.infomation1
             this.bookForm.driver = result.data.driver
             this.bookForm.dateTime = result.data.dateTime
-            this.bookForm.infomation5 = result.data.infomation5
+            this.bookForm.infomation2 = result.data.infomation2
             this.bookForm.manager = result.data.manager
           } else {
             this.btnSubmitDisabled = true

@@ -125,21 +125,21 @@ CREATE TABLE shipment (
     id         INTEGER   PRIMARY KEY
                          NOT NULL
                          UNIQUE,
-    address       TEXT,  -- 书名
-    project    TEXT,  -- 简介
-    label TEXT,  -- 译者
-    pouringType     TEXT,  -- 作者
-    infomation1  TEXT,  -- 出版社
-    infomation2 TEXT,  -- 出版日期
-    codeNum       TEXT      NOT NULL,  -- ISBN号
+    address       TEXT,  -- 施工单位
+    supplyUnit    TEXT,  -- 施工单位
+    label TEXT,  -- 标号
+    pouringType     TEXT,  -- 浇筑方式
+    supply  TEXT,  -- 出版社
+    planSlump TEXT,  -- 出版日期
+    mixRatioNum       TEXT      NOT NULL,  -- ISBN号
     mixRatio    TEXT,  -- 简介
-    infomation3 TEXT,  -- 译者
-    CarNum     TEXT,  -- 作者
-    infomation4  TEXT,  -- 出版社
+    distance TEXT,  -- 译者
+    carNum     TEXT,  -- 作者
+    infomation1  TEXT,  -- 出版社
     driver TEXT,  -- 出版日期
     dateTime TIMESTAMP NOT NULL
                          DEFAULT CURRENT_TIMESTAMP,
-    infomation5     TEXT,  -- 作者
+    infomation2     TEXT,  -- 作者
     manager  TEXT,  -- 出版社
     updated_at TIMESTAMP
 )
@@ -161,23 +161,23 @@ CREATE TABLE manage (
     others     TEXT,  -- 作者
     supply  TEXT,  -- 出版社
     planSlump TEXT,  -- 出版日期
-	realSlump     TEXT,
-	mixRatioNum     TEXT,
-	mixRatio     TEXT,
-	distance     TEXT,
-	CarNum     TEXT,
-	infomation1     TEXT,
-	driver     TEXT,
+	  realSlump     TEXT,
+    mixRatioNum     TEXT,
+    mixRatio     TEXT,
+    distance     TEXT,
+    carNum     TEXT,
+    infomation1     TEXT,
+    driver     TEXT,
     departureTime TIMESTAMP NOT NULL
                          DEFAULT CURRENT_TIMESTAMP,
-	arriveTime TIMESTAMP NOT NULL
-                         DEFAULT CURRENT_TIMESTAMP,
-    arriveTemp     TEXT,  -- 
-	beginTime TIMESTAMP NOT NULL
-                         DEFAULT CURRENT_TIMESTAMP,
-	endTime TIMESTAMP NOT NULL
-                         DEFAULT CURRENT_TIMESTAMP,
-	infomation2     TEXT,
+    arriveTime TIMESTAMP NOT NULL
+                           DEFAULT CURRENT_TIMESTAMP,
+    arriveTemp     TEXT,  --
+    beginTime TIMESTAMP NOT NULL
+                           DEFAULT CURRENT_TIMESTAMP,
+    endTime TIMESTAMP NOT NULL
+                           DEFAULT CURRENT_TIMESTAMP,
+    infomation2     TEXT,
     manager  TEXT,  -- 出版社
     updated_at TIMESTAMP
 )

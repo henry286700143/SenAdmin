@@ -27,19 +27,19 @@ dao.findById = async function (id, hasCategory) {
 dao.add = async function (data) {
   let fields = {
     address: data.address,
-    project: data.project,
+    supplyUnit: data.supplyUnit,
     label: data.label,
     pouringType: data.pouringType,
-    infomation1: data.infomation1,
-    infomation2: data.infomation2,
-    codeNum: data.codeNum,
+    supply: data.supply,
+    planSlump: data.planSlump,
+    mixRatioNum: data.mixRatioNum,
     mixRatio: data.mixRatio,
-    infomation3: data.infomation3,
-    CarNum: data.CarNum,
-    infomation4: data.infomation4,
+    distance: data.distance,
+    carNum: data.carNum,
+    infomation1: data.infomation1,
     driver: data.driver,
     dateTime: data.dateTime,
-    infomation5: data.infomation5,
+    infomation2: data.infomation2,
     manager: data.manager
   };
   return await base.insert(tableName, fields);

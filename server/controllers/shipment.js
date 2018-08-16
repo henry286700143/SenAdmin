@@ -42,24 +42,24 @@ controller.findById = async function (req, res) {
 
 controller.add = async function (req, res) {
   try {
-    if (!req.body.address || !req.body.project) {
+    if (!req.body.address || !req.body.supplyUnit) {
       return res.json(ErrorCode.INVALID_PARA);
     }
     let params = {
       address: req.body.address,
-      project: req.body.project,
+      supplyUnit: req.body.supplyUnit,
       label: req.body.label,
       pouringType: req.body.pouringType,
-      infomation1: req.body.infomation1,
-      infomation2: req.body.infomation2,
-      codeNum: req.body.codeNum,
+      supply: req.body.supply,
+      planSlump: req.body.planSlump,
+      mixRatioNum: req.body.mixRatioNum,
       mixRatio: req.body.mixRatio,
-      infomation3: req.body.infomation3,
-      CarNum: req.body.CarNum,
-      infomation4: req.body.infomation4,
+      distance: req.body.distance,
+      carNum: req.body.carNum,
+      infomation1: req.body.infomation1,
       driver: req.body.driver,
       dateTime: req.body.dateTime,
-      infomation5: req.body.infomation5,
+      infomation2: req.body.infomation2,
       manager: req.body.manager
     };
     let result = await dao.add(params);
@@ -78,24 +78,24 @@ controller.add = async function (req, res) {
 controller.update = async function (req, res) {
   try {
     const id = req.params.id;
-    if (!id || !req.body.address || !req.body.project) {
+    if (!id || !req.body.address || !req.body.supplyUnit) {
       return res.json(ErrorCode.INVALID_PARA);
     }
     let params = {
       address: req.body.address,
-      project: req.body.project,
+      supplyUnit: req.body.supplyUnit,
       label: req.body.label,
       pouringType: req.body.pouringType,
-      infomation1: req.body.infomation1,
-      infomation2: req.body.infomation2,
-      codeNum: req.body.codeNum,
+      supply: req.body.supply,
+      planSlump: req.body.planSlump,
+      mixRatioNum: req.body.mixRatioNum,
       mixRatio: req.body.mixRatio,
-      infomation3: req.body.infomation3,
-      CarNum: req.body.CarNum,
-      infomation4: req.body.infomation4,
+      distance: req.body.distance,
+      carNum: req.body.carNum,
+      infomation1: req.body.infomation1,
       driver: req.body.driver,
       dateTime: req.body.dateTime,
-      infomation5: req.body.infomation5,
+      infomation2: req.body.infomation2,
       manager: req.body.manager
     };
     let result = await dao.update(id, params);

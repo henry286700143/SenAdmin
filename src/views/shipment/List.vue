@@ -6,7 +6,7 @@
       <el-form :inline="true" label-width="0px">
         <el-form-item label="" label-width="0px">
           <el-input v-model="sname"
-                    placeholder="请输入工程名称"
+                    placeholder="请输入工程名称或施工部位"
                     :trigger-on-focus="false"
                     @keydown.enter.stop.native="handleSearch($event)">
             <el-button type="warn" slot="append" icon="el-icon-search" @click="handleSearch">搜索</el-button>
@@ -30,7 +30,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="address" label="工程名称及浇筑部位" sortable></el-table-column>
-        <el-table-column prop="project" label="施工单位" width="150"></el-table-column>
+        <el-table-column prop="supplyUnit" label="施工单位" width="150"></el-table-column>
         <el-table-column prop="label" label="标号" width="100"></el-table-column>
         <el-table-column prop="driver" label="司机" width="100"></el-table-column>
         <el-table-column label="操作" width="140">
