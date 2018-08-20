@@ -177,6 +177,7 @@ CREATE TABLE manage (
                            DEFAULT CURRENT_TIMESTAMP,
     endTime TIMESTAMP NOT NULL
                            DEFAULT CURRENT_TIMESTAMP,
+    liveSlump Text,
     infomation2     TEXT,
     manager  TEXT,  -- 出版社
     updated_at TIMESTAMP

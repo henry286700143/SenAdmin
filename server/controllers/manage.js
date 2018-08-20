@@ -8,7 +8,7 @@ const dao = require('../dao/manage');
 const controller = {};
 
 /**
- * 获取出料单列表
+ * 获取调度单列表
  * @param req
  * @param res
  * @returns {Promise.<void>}
@@ -42,17 +42,37 @@ controller.findById = async function (req, res) {
 
 controller.add = async function (req, res) {
   try {
-    if (!req.body.name || !req.body.isbn) {
+    if (!req.body.contractId || !req.body.isbn) {
       return res.json(ErrorCode.INVALID_PARA);
     }
     let params = {
-      name: req.body.name,
-      summary: req.body.summary,
-      translator: req.body.translator,
-      author: req.body.author,
-      publisher: req.body.publisher,
-      publish_at: req.body.publish_at,
-      isbn: req.body.isbn
+      contractId: req.body.contractId,
+      jobId: req.body.jobId,
+      supplyUnit: req.body.supplyUnit,
+      produceTime: req.body.produceTime,
+      address: req.body.address,
+      requester: req.body.requester,
+      powerLevel: req.body.powerLevel,
+      impLevel: req.body.impLevel,
+      pouringType: req.body.pouringType,
+      others: req.body.others,
+      supply: req.body.supply,
+      planSlump: req.body.planSlump,
+      realSlump: req.body.realSlump,
+      mixRatioNum: req.body.mixRatioNum,
+      mixRatio: req.body.mixRatio,
+      distance: req.body.distance,
+      carNum: req.body.carNum,
+      infomation1: req.body.infomation1,
+      driver: req.body.driver,
+      departureTime: req.body.departureTime,
+      arriveTime: req.body.arriveTime,
+      arriveTemp: req.body.arriveTemp,
+      beginTime: req.body.beginTime,
+      endTime: req.body.endTime,
+      liveSlump: req.body.liveSlump,
+      infomation2: req.body.infomation2,
+      manager: req.body.manager
     };
     let result = await dao.add(params);
     if (result && result.stmt && result.stmt.changes > 0) {
@@ -63,10 +83,6 @@ controller.add = async function (req, res) {
     }
   } catch (ex) {
     console.log(ex);
-    if (ex.code === 'SQLITE_CONSTRAINT' && ex.message.indexOf('category.name') > -1) {
-      res.json(ErrorCode.CUSTOM_ERROR('该类别名称已经存在'));
-      return;
-    }
     res.json(ErrorCode.SERVER_ERROR);
   }
 };
@@ -74,17 +90,37 @@ controller.add = async function (req, res) {
 controller.update = async function (req, res) {
   try {
     const id = req.params.id;
-    if (!id || !req.body.name || !req.body.isbn) {
+    if (!id || !req.body.contractId || !req.body.isbn) {
       return res.json(ErrorCode.INVALID_PARA);
     }
     let params = {
-      name: req.body.name,
-      summary: req.body.summary,
-      translator: req.body.translator,
-      author: req.body.author,
-      publisher: req.body.publisher,
-      publish_at: req.body.publish_at,
-      isbn: req.body.isbn
+      contractId: req.body.contractId,
+      jobId: req.body.jobId,
+      supplyUnit: req.body.supplyUnit,
+      produceTime: req.body.produceTime,
+      address: req.body.address,
+      requester: req.body.requester,
+      powerLevel: req.body.powerLevel,
+      impLevel: req.body.impLevel,
+      pouringType: req.body.pouringType,
+      others: req.body.others,
+      supply: req.body.supply,
+      planSlump: req.body.planSlump,
+      realSlump: req.body.realSlump,
+      mixRatioNum: req.body.mixRatioNum,
+      mixRatio: req.body.mixRatio,
+      distance: req.body.distance,
+      carNum: req.body.carNum,
+      infomation1: req.body.infomation1,
+      driver: req.body.driver,
+      departureTime: req.body.departureTime,
+      arriveTime: req.body.arriveTime,
+      arriveTemp: req.body.arriveTemp,
+      beginTime: req.body.beginTime,
+      endTime: req.body.endTime,
+      liveSlump: req.body.liveSlump,
+      infomation2: req.body.infomation2,
+      manager: req.body.manager
     };
     let result = await dao.update(id, params);
     if (result && result.stmt && result.stmt.changes > 0) {

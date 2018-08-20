@@ -94,7 +94,7 @@ baseDao.findGrid = async function (tableName, fields, where, sorts, offset, limi
   where = where || '';
   sorts = sorts || '';
   let sqlQuery = _.trim(`SELECT ${fields} FROM ${tableName} ${where} ${sorts}`);
-  // console.log(sqlQuery);
+  console.log(sqlQuery);
   const db = await dbPromise;
   let [rows, items] = await Promise.all([
     db.get(`SELECT count(1) as total FROM ${tableName} ${where}`),

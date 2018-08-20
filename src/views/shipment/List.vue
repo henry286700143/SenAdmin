@@ -68,14 +68,14 @@
     computed: {
       ...mapState(['loading']),
       ...mapState({
-        dataList: state => state.book.dataList,
-        total: state => state.book.total,
-        page: state => state.book.page,
-        limit: state => state.book.limit
+        dataList: state => state.shipment.dataList,
+        total: state => state.shipment.total,
+        page: state => state.shipment.page,
+        limit: state => state.shipment.limit
       }),
       sname: {
         get () {
-          return this.$store.state.book.sname
+          return this.$store.state.shipment.sname
         },
         set (val) {
           this.$store.commit('shipment/updateItem', {sname: val})
@@ -140,7 +140,7 @@
       }
     },
     mounted () {
-      if (!this.$store.state.book.dataList || this.$store.state.book.dataList.length === 0) {
+      if (!this.$store.state.shipment.dataList || this.$store.state.shipment.dataList.length === 0) {
         this.search()
       }
     }

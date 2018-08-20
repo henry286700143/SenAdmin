@@ -18,51 +18,90 @@
     <div class="page-main">
       <div class="content-wrap">
         <el-form class="form-book--info" ref="bookForm" :model="bookForm" :rules="bookRule" label-width="80px">
-          <el-form-item label="工程名称及浇筑部位" prop="address">
+          <el-form-item label="工程名称及浇筑部位" label-width="11em"  prop="address">
             <el-input v-model="bookForm.address"></el-input>
           </el-form-item>
-          <el-form-item label="施工单位" prop="supplyUnit">
-            <el-input v-model="bookForm.supplyUnit"></el-input>
-          </el-form-item>
-          <el-form-item label="标号" prop="label">
-            <el-input v-model="bookForm.label"></el-input>
-          </el-form-item>
-          <el-form-item label="浇筑方式" prop="pouringType">
-            <el-input v-model="bookForm.pouringType"></el-input>
-          </el-form-item>
-          <el-form-item label="本车供应方量" prop="supply">
-            <el-input v-model="bookForm.supply"></el-input>
-          </el-form-item>
-          <el-form-item label="要求塌落度" prop="planSlump">
-            <el-input v-model="bookForm.planSlump"></el-input>
-          </el-form-item>
-          <el-form-item label="配合比编号" prop="mixRatioNum">
-            <el-input v-model="bookForm.mixRatioNum"></el-input>
-          </el-form-item>
-          <el-form-item label="配合比" prop="mixRatio">
-            <el-input v-model="bookForm.mixRatio"></el-input>
-          </el-form-item>
-          <el-form-item label="运距" prop="distance">
-            <el-input v-model="bookForm.distance"></el-input>
-          </el-form-item>
-          <el-form-item label="车号" prop="carNum">
-            <el-input v-model="bookForm.carNum"></el-input>
-          </el-form-item>
-          <el-form-item label="信息1" prop="infomation1">
-            <el-input v-model="bookForm.infomation1"></el-input>
-          </el-form-item>
-          <el-form-item label="司机" prop="driver">
-            <el-input v-model="bookForm.driver"></el-input>
-          </el-form-item>
-          <el-form-item label="时间" prop="dateTime">
-            <el-date-picker v-model="bookForm.dateTime" type="datetime" placeholder="选择日期时间"></el-date-picker>
-          </el-form-item>
-          <el-form-item label="信息2" prop="infomation2">
-            <el-input v-model="bookForm.infomation2"></el-input>
-          </el-form-item>
-          <el-form-item label="调度" prop="manager">
-            <el-input v-model="bookForm.manager"></el-input>
-          </el-form-item>
+
+          <el-row type="flex">
+            <el-col :span="12">
+              <el-form-item label="施工单位" prop="supplyUnit">
+                <el-input v-model="bookForm.supplyUnit"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="标号" prop="label">
+                <el-input v-model="bookForm.label"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row type="flex">
+            <el-col :span="12">
+              <el-form-item label="浇筑方式" prop="pouringType">
+                <el-input v-model="bookForm.pouringType"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="本车供应方量" label-width="8em" prop="supply">
+                <el-input v-model="bookForm.supply"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="要求塌落度" label-width="7em" prop="planSlump">
+                <el-input v-model="bookForm.planSlump"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row type="flex">
+            <el-col :span="12">
+              <el-form-item label="配合比编号" label-width="7em" prop="mixRatioNum">
+                <el-input v-model="bookForm.mixRatioNum"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="配合比" prop="mixRatio">
+                <el-input v-model="bookForm.mixRatio"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row type="flex">
+            <el-col :span="12">
+              <el-form-item label="运距" prop="distance">
+                <el-input v-model="bookForm.distance"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="车号" prop="carNum">
+                <el-input v-model="bookForm.carNum"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="信息1" prop="infomation1">
+                <el-input v-model="bookForm.infomation1"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="司机" prop="driver">
+                <el-input v-model="bookForm.driver"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row type="flex">
+            <el-col :span="12">
+              <el-form-item label="时间" prop="dateTime">
+                <el-date-picker v-model="bookForm.dateTime" type="datetime" placeholder="选择日期时间"></el-date-picker>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="信息2" prop="infomation2">
+                <el-input v-model="bookForm.infomation2"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="调度" prop="manager">
+                <el-input v-model="bookForm.manager"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
           <el-form-item label="">
             <el-button type="main" @click="handleSubmit" :disabled="btnSubmitDisabled" class="btn-long">提交</el-button>
           </el-form-item>
@@ -249,8 +288,6 @@
           this.$msgError(error.toString())
         }
       }
-
-      await this.fillCategories()
     }
   }
 </script>

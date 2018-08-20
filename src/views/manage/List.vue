@@ -6,15 +6,15 @@
       <el-form :inline="true" label-width="0px">
         <el-form-item label="" label-width="0px">
           <el-input v-model="sname"
-                    placeholder="请输入书名"
+                    placeholder="请输入工程名称或施工部位"
                     :trigger-on-focus="false"
                     @keydown.enter.stop.native="handleSearch($event)">
             <el-button type="warn" slot="append" icon="el-icon-search" @click="handleSearch">搜索</el-button>
           </el-input>
         </el-form-item>
-        <el-form-item class="pull-right" v-if="AuthBookAdd">
-          <router-link :to="{ path: '/book/add' }">
-            <el-button type="default" icon="el-icon-plus">新增书籍</el-button>
+        <el-form-item class="pull-right" v-if="AuthManageAdd">
+          <router-link :to="{ path: '/manage/add' }">
+            <el-button type="default" icon="el-icon-plus">新增调度单</el-button>
           </router-link>
         </el-form-item>
       </el-form>
@@ -29,13 +29,13 @@
             <p class="summary">[ 内容简介 ] {{ props.row.summary }}</p>
           </template>
         </el-table-column>
-        <el-table-column label="书名" prop="name" sortable></el-table-column>
-        <el-table-column label="作者" width="150" prop="author"></el-table-column>
-        <el-table-column label="出版社" width="150" prop="publisher"></el-table-column>
-        <el-table-column label="出版日期" width="150" prop="publish_at"></el-table-column>
+        <el-table-column prop="address" label="工程名称及浇筑部位" sortable></el-table-column>
+        <el-table-column prop="supplyUnit" label="施工单位" width="150"></el-table-column>
+        <el-table-column prop="produceTime" label="生产时间" width="100"></el-table-column>
+        <el-table-column prop="requester" label="委托单位" width="100"></el-table-column>
         <el-table-column label="操作" width="140">
           <template slot-scope="scope">
-            <router-link :to="{ path: '/book/edit/'+scope.row.id}" v-if="AuthBookEdit">
+            <router-link :to="{ path: '/manage/edit/'+scope.row.id}" v-if="AuthManageEdit">
               <el-button type="warning" plain size="mini">编辑</el-button>
             </router-link>
             <el-button type="danger" plain size="mini" v-if="scope.row.role!==1" @click="handleDelete(scope.row.id)">
@@ -68,30 +68,30 @@
     computed: {
       ...mapState(['loading']),
       ...mapState({
-        dataList: state => state.book.dataList,
-        total: state => state.book.total,
-        page: state => state.book.page,
-        limit: state => state.book.limit
+        dataList: state => state.manage.dataList,
+        total: state => state.manage.total,
+        page: state => state.manage.page,
+        limit: state => state.manage.limit
       }),
       sname: {
         get () {
-          return this.$store.state.book.sname
+          return this.$store.state.manage.sname
         },
         set (val) {
-          this.$store.commit('book/updateItem', {sname: val})
+          this.$store.commit('manage/updateItem', {sname: val})
         }
       },
-      AuthBookAdd: function () {
-        return this.isPermission('AuthBookAdd')
+      AuthManageAdd: function () {
+        return this.isPermission('AuthManageAdd')
       },
-      AuthBookEdit: function () {
-        return this.isPermission('AuthBookEdit')
+      AuthManageEdit: function () {
+        return this.isPermission('AuthManageEdit')
       }
     },
     methods: {
-      ...mapActions('book', ['findList', 'delete']),
+      ...mapActions('manage', ['findList', 'delete']),
       handleSearch (ev) {
-        this.$store.commit('book/resetSearchStatus')
+        this.$store.commit('manage/resetSearchStatus')
         this.search()
         if (ev) {
           ev.preventDefault()
@@ -99,7 +99,7 @@
         }
       },
       handleCurrentChange (val) {
-        this.$store.commit('book/updateItem', {page: val})
+        this.$store.commit('manage/updateItem', {page: val})
         this.search()
       },
       search: async function () {
@@ -118,7 +118,7 @@
       },
       handleDelete: async function (id) {
         try {
-          await this.$confirm('确定删除该书籍吗？', '系统提示', {type: 'warning'})
+          await this.$confirm('确定删除该条记录吗？', '系统提示', {type: 'warning'})
         } catch (cancel) {
           return // 取消就不继续处理
         }
@@ -140,7 +140,7 @@
       }
     },
     mounted () {
-      if (!this.$store.state.book.dataList || this.$store.state.book.dataList.length === 0) {
+      if (!this.$store.state.manage.dataList || this.$store.state.manage.dataList.length === 0) {
         this.search()
       }
     }
