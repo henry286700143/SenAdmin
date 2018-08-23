@@ -10,6 +10,8 @@ const controller = require('../../controllers/shipment');
 //先检查登录
 router.use(userController.checkLogin);
 
+router.get('/getChartResult', userController.checkAuth, controller.getChartResult);
+
 router.get('/findlist', userController.checkAuth, controller.findList);
 
 router.get('/find/:id', userController.checkAuth, controller.findById);

@@ -8,6 +8,24 @@ const dao = require('../dao/shipment');
 const controller = {};
 
 /**
+ * 获取出料单图表json
+ * @param req
+ * @param res
+ * @returns {Promise.<void>}
+ */
+controller.getChartResult = async function (req, res) {
+  try {
+    let beginTime = req.query.beginTime;
+    let endTime = req.query.endTime;
+    let data = await dao.getChartResult(beginTime, endTime);
+    res.success(data);
+  } catch (ex) {
+    console.log(ex);
+    res.json(ErrorCode.SERVER_ERROR);
+  }
+};
+
+/**
  * 获取出料单列表
  * @param req
  * @param res

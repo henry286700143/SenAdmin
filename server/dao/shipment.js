@@ -7,6 +7,13 @@ const utils = require('../tools/utils');
 const tableName = 'shipment';
 const dao = {};
 
+dao.getChartResult = async function (beginTime, endTime) {
+//  sname = utils.trimSqlchar(sname);
+  let where = `where address like '%${beginTime}%'`;
+  let sorts = 'order by address';
+  return await base.findGrid(tableName, null, where, sorts, null, null);
+};
+
 dao.findList = async function (sname, page, limit) {
   sname = utils.trimSqlchar(sname);
   let where = `where address like '%${sname}%'`;

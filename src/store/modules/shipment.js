@@ -16,6 +16,22 @@ const state = {
 
 // actions
 const actions = {
+  async getChartResult ({commit, state}) {
+    let params = {
+      beginTime: state.beginTime,
+      endTime: state.endTime
+    }
+    let result = await API.getChartResult(params)
+    if (result && result.errcode === 0) {
+      commit('updateItem', {
+        dataList: result.data.items,
+        total: result.data.total,
+        beginTime: result.data.beginTime,
+        endTime: result.data.endTime
+      })
+    }
+    return result
+  },
   async findList ({commit, state}) {
     let params = {
       page: state.page,

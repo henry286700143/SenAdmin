@@ -64,6 +64,8 @@
 </style>
 
 <script>
+  import {mapState, mapActions} from 'vuex'
+  import TYPE from '@/store/mutation-types'
   import echarts from 'echarts'
 
   export default {
@@ -76,6 +78,23 @@
         chartPie: null
       }
     },
+    methods: {
+      ...mapActions('shipment', ['getChartResult']),
+      search: async function () {
+        try {
+          this.$store.commit(TYPE.setLoading, true)
+          let result = await this.getChartResult()
+          this.$store.commit(TYPE.setLoading, false)
+          if (!(result && result.errcode === 0)) {
+            this.$msgError(result.errmsg)
+          }
+        } catch (error) {
+          console.log(error)
+          this.$store.commit(TYPE.setLoading, false)
+          this.$msgError('请求出现异常')
+        }
+      }
+    },
     mounted: function () {
       var _this = this
       // 基于准备好的dom，初始化echarts实例
@@ -83,6 +102,10 @@
       this.chartBar = echarts.init(document.getElementById('chartBar'))
       this.chartLine = echarts.init(document.getElementById('chartLine'))
       this.chartPie = echarts.init(document.getElementById('chartPie'))
+
+//      if (!this.$store.state.shipment.dataList || this.$store.state.shipment.dataList.length === 0) {
+        this.search()
+//      }
 
       this.chartColumn.setOption({
         title: { text: '工程方量供应柱图' },

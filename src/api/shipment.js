@@ -5,6 +5,9 @@ import * as API from './base'
 const name = 'shipment'
 
 export default {
+  getChartResult: params => {
+    return API.GET(`/api/${name}/getChartResult`, params)
+  },
   findList: params => {
     return API.GET(`/api/${name}/findlist`, params)
   },
